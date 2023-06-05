@@ -47,7 +47,7 @@ function adapter.discover_positions(path)
 
   ;; tests blocks
   (expression_statement
-    (identifier) @testFunc (#any-of? @testFunc "test" "testWidgets")
+    (identifier) @testFunc (#any-of? @testFunc "test" "testWidgets" "blocTest")
     (selector (argument_part (arguments (argument (string_literal) @test.name)))))
     @test.definition
   ]]
@@ -97,7 +97,7 @@ local function get_strategy_config(strategy, path, script_args)
       local dap_command = 'flutter'
       if command:find('fvm ') ~= nil then
         local flutter_bin_symlink =
-          utils.join_path(vim.loop.cwd(), '.fvm', 'flutter_sdk', 'bin', 'flutter')
+            utils.join_path(vim.loop.cwd(), '.fvm', 'flutter_sdk', 'bin', 'flutter')
         dap_command = vim.loop.fs_realpath(flutter_bin_symlink) or 'flutter'
       end
       dap.adapters.dart_test = {
